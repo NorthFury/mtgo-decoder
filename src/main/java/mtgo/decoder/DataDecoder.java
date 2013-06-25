@@ -115,94 +115,94 @@ public class DataDecoder {
 
     private void decodeKeyValuePair(Card card, int key, int value) {
         switch (key) {
-            case 1074939419:
+            case 0x4012461b:
                 card.setImage(Integer.toString(value));
                 break;
-            case -2146324973:
+            case 0x8011ae13:
                 card.setName(names.get(value));
                 break;
-            case 1:
+            case 0x1:
                 card.setAbility(abilities1.get(value));
                 break;
-            case 2:
+            case 0x2:
                 card.setAbility(abilities2.get(value));
                 break;
-            case 3:
+            case 0x3:
                 card.setAbility(abilities3.get(value));
                 break;
-            case 18:
+            case 0x12:
                 card.setAbility(abilitiesAll.get(value));
                 break;
-            case 4:
+            case 0x4:
                 card.setSet(sets.get(value));
                 break;
-            case 1074746642:
+            case 0x400f5512:
                 card.setConvertedManaCost(convertedManaCost.get(value));
                 break;
-            case 5:
+            case 0x5:
                 card.setCreatureType(creatureType.get(value));
                 break;
-            case 17:
+            case 0x11:
                 card.setRarity(rarity[value]);
                 break;
-            case -2146326518:
+            case 0x8011a80a:
                 card.setArtist(artists.get(value));
                 break;
-            case 6:
+            case 0x6:
                 card.setFlavor(flavors.get(value));
                 break;
-            case -2146302967:
+            case 0x80120409:
                 card.setCost(costs.get(value));
                 break;
-            case 20:
+            case 0x14:
                 card.setCardNo(cardNos.get(value));
                 break;
-            case 19:
+            case 0x13:
                 card.setBaseCardId(value);
                 break;
-            case 25:
+            case 0x19:
                 card.setPt(pt.get(value));
                 break;
-            case 1074900500:
+            case 0x4011ae14:
                 card.setcToken(cToken.get(value));
                 break;
-            case 1074921499:
+            case 0x4012001b:
                 card.addType("Land");
                 break;
-            case 1074921488:
+            case 0x40120010:
                 card.addType("Creature");
                 break;
-            case 1074921485:
+            case 0x4012000d:
                 card.addType("Artifact");
                 break;
-            case 1074921476:
+            case 0x40120004:
                 card.addType("Instant");
                 break;
-            case 1074932999:
+            case 0x40122d07:
                 card.addType("Sorcery");
                 break;
-            case 1074946335:
+            case 0x4012611f:
                 card.addType("Planeswalker");
                 break;
-            case 1074921489:
+            case 0x40120011:
                 card.addType("Enchantment");
                 break;
-            case 1074921493:
+            case 0x40120015:
                 card.addType("Equipment");
                 break;
-            case 1074921501:
+            case 0x4012001d:
                 card.addType("Aura");
                 break;
-            case 1074946339:
+            case 0x40126123:
                 card.addType("Tribal");
                 break;
-            case 1074746639:
+            case 0x400f550f:
                 card.setColor(colors.get(value));
                 break;
-            case 1074973445:
+            case 0x4012cb05:
                 card.setWatermark(watermark[value]);
                 break;
-            case 1074765637:
+            case 0x400f9f45:
                 card.setFoil(true);
                 break;
             default:
