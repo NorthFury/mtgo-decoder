@@ -115,12 +115,6 @@ public class DataDecoder {
 
     private void decodeKeyValuePair(Card card, int key, int value) {
         switch (key) {
-            case 0x4012461b:
-                card.setImage(Integer.toString(value));
-                break;
-            case 0x8011ae13:
-                card.setName(names.get(value));
-                break;
             case 0x1:
                 card.setAbility(abilities1.get(value));
                 break;
@@ -130,38 +124,44 @@ public class DataDecoder {
             case 0x3:
                 card.setAbility(abilities3.get(value));
                 break;
-            case 0x12:
-                card.setAbility(abilitiesAll.get(value));
-                break;
             case 0x4:
                 card.setSet(sets.get(value));
-                break;
-            case 0x400f5512:
-                card.setConvertedManaCost(convertedManaCost.get(value));
                 break;
             case 0x5:
                 card.setCreatureType(creatureType.get(value));
                 break;
-            case 0x11:
-                card.setRarity(rarity[value]);
-                break;
-            case 0x8011a80a:
-                card.setArtist(artists.get(value));
-                break;
             case 0x6:
                 card.setFlavor(flavors.get(value));
                 break;
-            case 0x80120409:
-                card.setCost(costs.get(value));
+            case 0x11:
+                card.setRarity(rarity[value]);
                 break;
-            case 0x14:
-                card.setCardNo(cardNos.get(value));
+            case 0x12:
+                card.setAbility(abilitiesAll.get(value));
                 break;
             case 0x13:
                 card.setBaseCardId(value);
                 break;
+            case 0x14:
+                card.setCardNo(cardNos.get(value));
+                break;
             case 0x19:
                 card.setPt(pt.get(value));
+                break;
+            case 0x4012461b:
+                card.setImage(Integer.toString(value));
+                break;
+            case 0x8011ae13:
+                card.setName(names.get(value));
+                break;
+            case 0x400f5512:
+                card.setConvertedManaCost(convertedManaCost.get(value));
+                break;
+            case 0x8011a80a:
+                card.setArtist(artists.get(value));
+                break;
+            case 0x80120409:
+                card.setCost(costs.get(value));
                 break;
             case 0x4011ae14:
                 card.setcToken(cToken.get(value));
