@@ -208,7 +208,7 @@ public class Card {
 
     public void printUnused() {
         for (Integer i = 0; i < keys.size(); i++) {
-            System.out.println(keys.get(i) + " " + values.get(i));
+            System.out.println(Integer.toHexString(keys.get(i)) + " " + values.get(i));
         }
     }
 

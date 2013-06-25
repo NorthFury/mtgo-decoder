@@ -48,13 +48,13 @@ public class DataDecoder {
         this.abilities1 = readDataFile(getDataPath("d00000001.dat"));
         this.abilities2 = readDataFile(getDataPath("d00000002.dat"));
         this.abilities3 = readDataFile(getDataPath("d00000003.dat"));
-        this.abilitiesAll = readDataFile(getDataPath("d00000014.dat"));
+        this.abilitiesAll = readDataFile(getDataPath("d00000012.dat"));
         this.sets = readDataFile(getDataPath("d00000004.dat"));
-        this.convertedManaCost = readDataFile(getDataPath("d00000005.dat"));
-        this.creatureType = readDataFile(getDataPath("d00000006.dat"));
-        this.flavors = readDataFile(getDataPath("d00000007.dat"));
-        this.costs = readDataFile(getDataPath("d00000011.dat"));
-        this.cardNos = readDataFile(getDataPath("d00000016.dat"));
+        this.convertedManaCost = readDataFile(getDataPath("d400f5512.dat"));
+        this.creatureType = readDataFile(getDataPath("d00000005.dat"));
+        this.flavors = readDataFile(getDataPath("d00000006.dat"));
+        this.costs = readDataFile(getDataPath("d80120409.dat"));
+        this.cardNos = readDataFile(getDataPath("d00000014.dat"));
         this.pt = readDataFile(getDataPath("d00000019.dat"));
         this.artists = readDataFile(getDataPath("d8011a80a.dat"));
         this.names = readDataFile(getDataPath("d8011ae13.dat"));
@@ -101,7 +101,7 @@ public class DataDecoder {
                 value = getInt(bytes, i + 4);
                 decodeKeyValuePair(card, key, value);
                 i += 8;
-            } while (key != 69);
+            } while (key != 68);
 
             if (!card.isFoil() && (card.getArtist() != null || card.getCardId() == 35162)) {
                 cards.put(card.getCardId(), card);
@@ -130,34 +130,34 @@ public class DataDecoder {
             case 3:
                 card.setAbility(abilities3.get(value));
                 break;
-            case 20:
+            case 18:
                 card.setAbility(abilitiesAll.get(value));
                 break;
             case 4:
                 card.setSet(sets.get(value));
                 break;
-            case 5:
+            case 1074746642:
                 card.setConvertedManaCost(convertedManaCost.get(value));
                 break;
-            case 6:
+            case 5:
                 card.setCreatureType(creatureType.get(value));
                 break;
-            case 19:
+            case 17:
                 card.setRarity(rarity[value]);
                 break;
             case -2146326518:
                 card.setArtist(artists.get(value));
                 break;
-            case 7:
+            case 6:
                 card.setFlavor(flavors.get(value));
                 break;
-            case 17:
+            case -2146302967:
                 card.setCost(costs.get(value));
                 break;
-            case 22:
+            case 20:
                 card.setCardNo(cardNos.get(value));
                 break;
-            case 21:
+            case 19:
                 card.setBaseCardId(value);
                 break;
             case 25:
@@ -221,15 +221,20 @@ public class DataDecoder {
     private void logUnusedKeys() {
         for (Integer key : unusedKeyCount.keySet()) {
             if (unusedKeyCount.get(key) > 500) {
-                System.out.println(key + " -> " + unusedKeyCount.get(key));
+                System.out.println(Integer.toHexString(key) + " -> " + unusedKeyCount.get(key));
             }
         }
     }
 
     private List<Card> getSortedCardList() {
         List<Card> cardList = new ArrayList<>();
+        int x = 0;
         for (Integer cardId : cards.keySet()) {
             Card card = cards.get(cardId);
+            if ("Phyrexian Juggernaut".equals(card.getName())) {
+                card.printUnused();
+            }
+            findParentIdKey(card);
             if (card.getBaseCardId() != null) {
                 Card baseCard = cards.get(card.getBaseCardId());
                 if (baseCard != null) {
@@ -244,5 +249,16 @@ public class DataDecoder {
 
     private Path getDataPath(String fileName) {
         return Paths.get(mtgoDir + mtgoDataPath + fileName);
+    }
+
+    private void findParentIdKey(Card card) {
+        if ("Teetering Peaks".equals(card.getName())) {
+            System.out.println("ID: " + card.getCardId());
+        }
+        if ("ZEN".equals(card.getSet()) && "226/249".equals(card.getCardNo())) {
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+            card.printUnused();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+        }
     }
 }
